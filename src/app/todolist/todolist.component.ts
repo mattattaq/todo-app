@@ -14,7 +14,11 @@ export class TodolistComponent {
     {
       taskName: "brush teeth",
       isCompleted: false
-    }
+    },
+    {
+      taskName: "feed dogs",
+      isCompleted: false
+    },
   ];
 
   onSubmit(taskForm: any) {
@@ -31,5 +35,10 @@ export class TodolistComponent {
     console.log(index + 1);
     this.taskArray.splice(index, 1);
 
+  }
+  onCheck(index: number) {
+    var self = this.taskArray[index]
+    self.isCompleted = !self.isCompleted;
+    console.log(self.isCompleted)
   }
 }

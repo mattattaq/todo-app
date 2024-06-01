@@ -17,15 +17,17 @@
                     placeholder="What're we doing boss?"
                     ngModel
                     name="task"
+                    required
                     >
-                  <small id="error-todo"class="form-text text-danger">
+                  <small id="error-todo" class="form-text text-danger" *ngIf="taskForm.invalid && taskForm.touched">
                     Oops, looks like this is empty
                   </small>
                 </div>
                 <button
-                    type="submit"
-                    class="btn btn-primary"
-                    id="todo-submit"
+                  [disabled]="taskForm.invalid"
+                  type="submit"
+                  class="btn btn-primary"
+                  id="todo-submit"
                 >
                     Submit
                 </button>
@@ -44,7 +46,7 @@
                 <tr *ngFor="let t of taskArray; index as i">
                   <th scope="row">1</th>
                   <td>{{t.taskName}}</td>
-                  <td><input type="checkbox" name="check" class="todo-check"></td>
+                  <td><input (change)="onCheck(i)" type="checkbox" name="check" class="todo-check"></td>
                   <td><button class="btn btn-danger btn-sm" (click)="onDelete(i)">Delete</button></td>
                 </tr>
               </tbody>
